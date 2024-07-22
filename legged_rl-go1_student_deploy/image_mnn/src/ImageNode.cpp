@@ -291,6 +291,13 @@ void ImageNode::updateInputImage()
 
     // std::cout << depth_img << "\n";
 
+    ///////pre_process
+    cv::Mat clippedImage = depthClipping(depth_img, 0.0, 10.0); // 示例深度裁剪范围
+    cv::Mat noisyImage = addGaussianNoise(clippedImage);
+    cv::Mat artifactImage = addRandomArtifacts(noisyImage);
+    cv::Mat filledImage = fillHoles(artifactImage);
+    cv::Mat filteredImage = spatialFilter(filledImage);
+
     auto imageDims = inputImage_->shape();
 
     auto tensorData = inputImage_->host<float>(); // Adjust according to the expected data type in the tensor
@@ -455,3 +462,54 @@ bool ImageNode::loadRLCfg(ros::NodeHandle &nh)
     return (true);
 }
 
+
+
+////////////pre_process
+// Depth_Clipping
+cv::Mat depthClipping(const cv::Mat& image, double minDepth, double maxDepth) {
+    cv::Mat clippedImage;
+    cv::threshold(image, clippedImage, minDepth, 255, cv::THRESH_BINARY);
+    cv::threshold(clippedImage, clippedImage, maxDepth, 255, cv::THRESH_TRUNC);
+    return clippedImage;
+}
+
+// Gaussian_Noise:
+cv::Mat addGaussianNoise(const cv::Mat& image, double mean = 0, double sigma = 25) {
+    cv::Mat noise(image.size(), CV_32F);
+    cv::RNG rng;
+    rng.fill(noise, cv::RNG::NORMAL, mean, sigma);
+    cv::Mat noisyImage;
+    image.convertTo(noisyImage, CV_32F);
+    cv::add(noisyImage, noise, noisyImage);
+    noisyImage.convertTo(noisyImage, CV_8UC1);
+    return noisyImage;
+}
+
+// Random_Artifacts
+cv::Mat addRandomArtifacts(const cv::Mat& image, int numArtifacts = 100) {
+    cv::Mat artifactImage = image.clone();
+    cv::RNG rng;
+    for (int i = 0; i < numArtifacts; ++i) {
+        int x = rng.uniform(0, image.cols);
+        int y = rng.uniform(0, image.rows);
+        artifactImage.at<uchar>(y, x) = rng.uniform(0, 256);
+    }
+    return artifactImage;
+}
+
+// Hole-Filling
+cv::Mat fillHoles(const cv::Mat& image) {
+    cv::Mat binaryImage;
+    cv::threshold(image, binaryImage, 1, 255, cv::THRESH_BINARY);
+    cv::Mat filledImage = image.clone();
+    cv::findContours(binaryImage, std::vector<std::vector<cv::Point>>(), cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
+    cv::drawContours(filledImage, std::vector<std::vector<cv::Point>>(), -1, cv::Scalar(255), cv::FILLED);
+    return filledImage;
+}
+
+// Spatial and Temporal Filtering
+cv::Mat spatialFilter(const cv::Mat& image, int kernelSize = 5) {
+    cv::Mat filteredImage;
+    cv::GaussianBlur(image, filteredImage, cv::Size(kernelSize, kernelSize), 0);
+    return filteredImage;
+}
