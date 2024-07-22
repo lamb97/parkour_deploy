@@ -62,6 +62,8 @@ bool ImageNode::init(ros::NodeHandle &nh)
     return true;
 }
 
+
+
 void ImageNode::obsCallback(const control_msg::TimestampedFloat32MultiArray::ConstPtr &obs_msg)
 {
     std::lock_guard<std::mutex> guard(obs_mutex_);
@@ -280,23 +282,25 @@ void ImageNode::updateInputImage()
     cv::Mat coloredDepth;
     cv::applyColorMap(normalizedDepth, coloredDepth, cv::COLORMAP_JET);
 
+
+
+    // std::cout << depth_img << "\n";
+
+    // ///////pre_process
+    // cv::Mat clippedImage = depthClipping(depth_img, 0.0, 10.0); // 示例深度裁剪范围
+    // cv::Mat noisyImage = addGaussianNoise(clippedImage);
+    // cv::Mat artifactImage = addRandomArtifacts(noisyImage);
+    //cv::Mat filledImage = fillHoles(artifactImage);
+    // cv::Mat filteredImage = spatialFilter(filledImage);
+
     // 显示处理后的帧
-    cv::imshow("Resizable Window", coloredDepth);
+    cv::imshow("Resizable Window", depth_img);
 
     // 检测按键（如果按下ESC键，退出）
     if (cv::waitKey(1) == 27)
     {
         exit(0);
     }
-
-    // std::cout << depth_img << "\n";
-
-    ///////pre_process
-    cv::Mat clippedImage = depthClipping(depth_img, 0.0, 10.0); // 示例深度裁剪范围
-    cv::Mat noisyImage = addGaussianNoise(clippedImage);
-    cv::Mat artifactImage = addRandomArtifacts(noisyImage);
-    cv::Mat filledImage = fillHoles(artifactImage);
-    cv::Mat filteredImage = spatialFilter(filledImage);
 
     auto imageDims = inputImage_->shape();
 
@@ -466,7 +470,7 @@ bool ImageNode::loadRLCfg(ros::NodeHandle &nh)
 
 ////////////pre_process
 // Depth_Clipping
-cv::Mat depthClipping(const cv::Mat& image, double minDepth, double maxDepth) {
+cv::Mat ImageNode::depthClipping(const cv::Mat& image, double minDepth, double maxDepth) {
     cv::Mat clippedImage;
     cv::threshold(image, clippedImage, minDepth, 255, cv::THRESH_BINARY);
     cv::threshold(clippedImage, clippedImage, maxDepth, 255, cv::THRESH_TRUNC);
@@ -474,7 +478,7 @@ cv::Mat depthClipping(const cv::Mat& image, double minDepth, double maxDepth) {
 }
 
 // Gaussian_Noise:
-cv::Mat addGaussianNoise(const cv::Mat& image, double mean = 0, double sigma = 25) {
+cv::Mat ImageNode::addGaussianNoise(const cv::Mat& image, double mean, double sigma) {
     cv::Mat noise(image.size(), CV_32F);
     cv::RNG rng;
     rng.fill(noise, cv::RNG::NORMAL, mean, sigma);
@@ -486,7 +490,7 @@ cv::Mat addGaussianNoise(const cv::Mat& image, double mean = 0, double sigma = 2
 }
 
 // Random_Artifacts
-cv::Mat addRandomArtifacts(const cv::Mat& image, int numArtifacts = 100) {
+cv::Mat ImageNode::addRandomArtifacts(const cv::Mat& image, int numArtifacts) {
     cv::Mat artifactImage = image.clone();
     cv::RNG rng;
     for (int i = 0; i < numArtifacts; ++i) {
@@ -498,7 +502,7 @@ cv::Mat addRandomArtifacts(const cv::Mat& image, int numArtifacts = 100) {
 }
 
 // Hole-Filling
-cv::Mat fillHoles(const cv::Mat& image) {
+cv::Mat ImageNode::fillHoles(const cv::Mat& image) {
     cv::Mat binaryImage;
     cv::threshold(image, binaryImage, 1, 255, cv::THRESH_BINARY);
     cv::Mat filledImage = image.clone();
@@ -508,7 +512,7 @@ cv::Mat fillHoles(const cv::Mat& image) {
 }
 
 // Spatial and Temporal Filtering
-cv::Mat spatialFilter(const cv::Mat& image, int kernelSize = 5) {
+cv::Mat ImageNode::spatialFilter(const cv::Mat& image, int kernelSize) {
     cv::Mat filteredImage;
     cv::GaussianBlur(image, filteredImage, cv::Size(kernelSize, kernelSize), 0);
     return filteredImage;

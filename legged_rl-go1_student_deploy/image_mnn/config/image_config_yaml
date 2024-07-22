@@ -1,0 +1,25 @@
+realsense2_camera:
+  filters:
+    disparity:
+      enabled: true
+      alpha: 0.5
+      post_processing:
+        enable_spatial: true
+        enable_temporal: true
+    temporal:
+      enabled: true
+      alpha: 0.5
+      delta: 20
+      persistence: 1
+    spatial:
+      enabled: true
+      hole_filling: 1
+      magnitude: 2
+      alpha: 0.5
+      delta: 20
+    hole_filling:
+      enabled: true
+      mode: 2
+    decimation:
+      enabled: true
+      magnitude: 2

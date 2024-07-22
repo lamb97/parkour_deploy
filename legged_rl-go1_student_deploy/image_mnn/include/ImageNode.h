@@ -96,6 +96,20 @@ public:
     ~ImageNode(){}
     bool init(ros::NodeHandle& nh);
     std::string depth_image_topic_;
+    // 深度裁剪
+    cv::Mat depthClipping(const cv::Mat& image, double minDepth, double maxDepth);
+
+    // 高斯噪声
+    cv::Mat addGaussianNoise(const cv::Mat& image, double mean = 0, double sigma = 25);
+
+    // 随机伪影
+    cv::Mat addRandomArtifacts(const cv::Mat& image, int numArtifacts = 100);
+
+    // 孔洞填补
+    cv::Mat fillHoles(const cv::Mat& image);
+
+    // 空间滤波
+    cv::Mat spatialFilter(const cv::Mat& image, int kernelSize = 5);
 
 protected:
     void obsCallback(const control_msg::TimestampedFloat32MultiArray::ConstPtr& joint_msg);
@@ -109,6 +123,7 @@ protected:
     // void converHiddenStateDataToInputHidden();
     void printTensorDimensions(const MNN::Tensor *tensor);
     void initMNNTensorWithZero(MNN::Tensor* mnn_tensor);
+
 
 private:
     void messageProcessingLoop();

@@ -18,8 +18,8 @@
   <arg name="enable_pointcloud" default="true"/>
   <arg name="enable_sync" default="false"/>
   
-  <!-- <rosparam file="$(find image_mnn)/config/image_config.yaml" command="load"/> -->
-  <arg name="filters" value="disparity, spatial, hole_filling, decimation"/>
+  <rosparam file="$(find image_mnn)/config/image_config.yaml" command="load"/>
+  <arg name="filters" value="disparity, spatial, temporal, hole_filling, decimation"/>
 
 
 
