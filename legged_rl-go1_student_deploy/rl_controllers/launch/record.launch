@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+
+<launch>
+    
+    <node pkg="rosbag" type="record" 
+            name="bag_record" 
+            args="
+            /controllers/parkour_controller/data_analysis/output_torque
+            /controllers/parkour_controller/data_analysis/real_joint_pos
+            /controllers/parkour_controller/data_analysis/real_joint_vel
+            /controllers/parkour_controller/data_analysis/real_torque
+            /controllers/parkour_controller/data_analysis/rlPos
+            -o $(find rl_controllers)/data/data"/>
+</launch>

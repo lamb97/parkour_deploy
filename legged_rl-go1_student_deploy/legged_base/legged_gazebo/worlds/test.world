@@ -1,0 +1,1898 @@
+<sdf version='1.7'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>65535</collide_bitmask>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <state world_name='default'>
+      <sim_time>547 239000000</sim_time>
+      <real_time>482 562013091</real_time>
+      <wall_time>1716626257 289840717</wall_time>
+      <iterations>480941</iterations>
+      <model name='go1'>
+        <pose>0.004462 0.000407 0.105844 -0.001506 -0.001375 -0.000371</pose>
+        <scale>1 1 1</scale>
+        <link name='LF_FOOT'>
+          <pose>0.19005 0.130424 0.019966 0.158196 -1.32727 -0.153912</pose>
+          <velocity>-0.001259 0.001753 -0.016375 -0.089587 -0.064727 0.050878</velocity>
+          <acceleration>-0.018637 4.43004 -0.056895 2.03932 -0.912047 2.59308</acceleration>
+          <wrench>-0.001118 0.265802 -0.003414 0 -0 0</wrench>
+        </link>
+        <link name='LF_calf'>
+          <pose>-0.016861 0.128562 0.070458 0.159228 -1.32834 -0.154941</pose>
+          <velocity>0.001131 0.000409 -0.002402 0.028322 0.067465 -0.003667</velocity>
+          <acceleration>0.083282 1.90159 0.308922 -1.28109 -1.02773 -3.03335</acceleration>
+          <wrench>0.011315 0.258354 0.041971 0 -0 0</wrench>
+        </link>
+        <link name='LF_hip'>
+          <pose>0.192579 0.047087 0.106033 0.03806 -0.001355 -0.000345</pose>
+          <velocity>0.000599 5e-05 -0.000223 -0.006403 -0.006341 -0.00136</velocity>
+          <acceleration>-0.006267 0.030125 -0.389789 -2.55135 0.253385 2.16576</acceleration>
+          <wrench>-0.003704 0.017804 -0.230366 0 -0 0</wrench>
+        </link>
+        <link name='LF_thigh'>
+          <pose>0.192604 0.12703 0.109077 0.206876 1.38446 0.203101</pose>
+          <velocity>0.000768 5.6e-05 -0.001036 -0.006047 -0.006462 -0.00144</velocity>
+          <acceleration>0.098805 -0.007864 0.605393 -1.53162 0.272901 -1.1555</acceleration>
+          <wrench>0.090901 -0.007235 0.556962 0 -0 0</wrench>
+        </link>
+        <link name='LH_FOOT'>
+          <pose>-0.18595 0.130186 0.019965 0.144471 -1.33183 -0.140784</pose>
+          <velocity>-0.001401 -0.001715 -0.017121 0.087502 -0.071548 -0.048763</velocity>
+          <acceleration>-0.021037 -3.88267 0.028268 2.58 -0.977258 1.67768</acceleration>
+          <wrench>-0.001262 -0.23296 0.001696 0 -0 0</wrench>
+        </link>
+        <link name='LH_calf'>
+          <pose>-0.393064 0.128558 0.06963 0.144869 -1.33292 -0.141144</pose>
+          <velocity>0.00108 -9e-05 -0.001913 -0.042533 0.072469 0.005214</velocity>
+          <acceleration>-0.05864 -1.46985 0.004731 0.031751 0.747158 2.59304</acceleration>
+          <wrench>-0.007967 -0.199697 0.000643 0 -0 0</wrench>
+        </link>
+        <link name='LH_hip'>
+          <pose>-0.18362 0.047227 0.105515 0.034032 -0.001359 -0.00035</pose>
+          <velocity>0.000602 -6.3e-05 -0.001112 -0.003912 -0.004893 -0.001893</velocity>
+          <acceleration>-0.021769 -0.036409 -0.132019 -0.831723 -1.47173 1.73541</acceleration>
+          <wrench>-0.012865 -0.021518 -0.078023 0 -0 0</wrench>
+        </link>
+        <link name='LH_thigh'>
+          <pose>-0.183596 0.127181 0.108237 0.185566 1.38531 0.182152</pose>
+          <velocity>0.000765 -8.3e-05 -0.000855 -0.004953 -0.00463 -0.002587</velocity>
+          <acceleration>-0.062879 -0.085171 0.290488 -3.0807 -1.34735 1.55843</acceleration>
+          <wrench>-0.057849 -0.078357 0.267249 0 -0 0</wrench>
+        </link>
+        <link name='RF_FOOT'>
+          <pose>0.189861 -0.129978 0.019967 -0.167496 -1.32512 0.162129</pose>
+          <velocity>-0.00125 -0.001682 -0.01602 0.086146 -0.064373 -0.050639</velocity>
+          <acceleration>-0.024201 -4.49849 -0.034459 1.37241 -1.1964 2.10956</acceleration>
+          <wrench>-0.001452 -0.26991 -0.002068 0 -0 0</wrench>
+        </link>
+        <link name='RF_calf'>
+          <pose>-0.01696 -0.127819 0.070818 -0.168386 -1.3262 0.163013</pose>
+          <velocity>0.001119 -0.000396 -0.002284 -0.028224 0.066187 0.004087</velocity>
+          <acceleration>0.071049 -1.95112 0.154522 3.11139 1.56351 0.195838</acceleration>
+          <wrench>0.009653 -0.265084 0.020994 0 -0 0</wrench>
+        </link>
+        <link name='RF_hip'>
+          <pose>0.192545 -0.046413 0.106174 -0.040573 -0.001359 -0.000399</pose>
+          <velocity>0.000611 1.2e-05 -0.000258 0.007271 -0.005269 0.001701</velocity>
+          <acceleration>-0.008209 -0.027293 -0.418803 -1.99657 0.188976 1.37947</acceleration>
+          <wrench>-0.004852 -0.01613 -0.247513 0 -0 0</wrench>
+        </link>
+        <link name='RF_thigh'>
+          <pose>0.192509 -0.126347 0.109418 -0.220203 1.384 -0.216946</pose>
+          <velocity>0.000801 1e-06 -0.001145 0.006823 -0.005399 0.001737</velocity>
+          <acceleration>0.088369 0.015551 0.647196 0.933886 -1.31763 -2.76619</acceleration>
+          <wrench>0.0813 0.014307 0.59542 0 -0 0</wrench>
+        </link>
+        <link name='RH_FOOT'>
+          <pose>-0.186197 -0.129673 0.019966 -0.163098 -1.3283 0.158012</pose>
+          <velocity>-0.001328 0.00168 -0.01658 -0.085694 -0.067898 0.049934</velocity>
+          <acceleration>-0.005095 3.84287 0.013731 -0.490405 -0.193209 -2.84761</acceleration>
+          <wrench>-0.000306 0.230572 0.000824 0 -0 0</wrench>
+        </link>
+        <link name='RH_calf'>
+          <pose>-0.393167 -0.127621 0.070211 -0.163682 -1.32937 0.158567</pose>
+          <velocity>0.001101 -3e-05 -0.001957 0.044164 0.069806 -0.005391</velocity>
+          <acceleration>-0.037646 1.50323 0.112231 1.84079 -0.131657 -1.80799</acceleration>
+          <wrench>-0.005115 0.204231 0.015248 0 -0 0</wrench>
+        </link>
+        <link name='RH_hip'>
+          <pose>-0.183655 -0.046273 0.105656 -0.038966 -0.001359 -0.000394</pose>
+          <velocity>0.000612 -3e-06 -0.001137 0.004242 -0.004826 0.002208</velocity>
+          <acceleration>-0.022736 0.050031 -0.154943 0.540392 0.31569 0.690449</acceleration>
+          <wrench>-0.013437 0.029568 -0.091571 0 -0 0</wrench>
+        </link>
+        <link name='RH_thigh'>
+          <pose>-0.18369 -0.126212 0.108772 -0.211952 1.38454 -0.20884</pose>
+          <velocity>0.000793 1.7e-05 -0.000903 0.005302 -0.004581 0.002882</velocity>
+          <acceleration>-0.069753 0.104863 0.207064 -1.02602 0.87192 -0.717529</acceleration>
+          <wrench>-0.064172 0.096474 0.190499 0 -0 0</wrench>
+        </link>
+        <link name='base'>
+          <pose>0.004462 0.000407 0.105844 -0.001506 -0.001375 -0.000371</pose>
+          <velocity>0.000585 -2e-06 -0.000665 0.000207 -0.002551 0.000194</velocity>
+          <acceleration>-0.024145 0.00329 -0.187316 0.162898 -0.079307 0.05306</acceleration>
+          <wrench>-0.125653 0.017123 -0.974812 0 -0 0</wrench>
+        </link>
+        <link name='base_imu'>
+          <pose>0.004462 0.000407 0.105844 -0.001506 -0.001375 -0.000371</pose>
+          <velocity>0.000579 -2e-06 -0.000659 0.000208 -0.002542 0.00023</velocity>
+          <acceleration>-0.024202 0.002185 -0.185263 0.159292 -0.088298 0.120349</acceleration>
+          <wrench>-0.000242 2.2e-05 -0.001853 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='low_box'>
+        <pose>0.093662 0.040815 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='Wall_0'>
+          <pose>1.19866 0.040815 0 0 -0 1.5708</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ramp'>
+        <pose>0 2 -1 0 0.2 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 2 -1 0 0.2 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>0.843775 -3.46808 3.35811 -0 0.783643 1.5602</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    <model name='ramp'>
+      <static>1</static>
+      <pose>0 2 -1 0 0.2 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>5 3 0.1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>5 3 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='go1'>
+      <link name='base'>
+        <inertial>
+          <pose>0.022305 0.002 -0.000498 0 -0 0</pose>
+          <mass>5.2041</mass>
+          <inertia>
+            <ixx>0.0169136</ixx>
+            <ixy>-0.000229999</ixy>
+            <ixz>-0.000296672</ixz>
+            <iyy>0.0631164</iyy>
+            <iyz>-4.19855e-05</iyz>
+            <izz>0.0717609</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.3762 0.0935 0.114</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_fixed_joint_lump__camera_depth_frame_collision_1'>
+          <pose>0.27 0.015 0.086 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01 0.04 0.04</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='base_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/trunk.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_fixed_joint_lump__camera_depth_frame_visual_1'>
+          <pose>0.27 0.015 0.086 1.5708 -0 1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/d435.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <sensor name='d435depth' type='depth'>
+          <camera name='d435'>
+            <horizontal_fov>1.51844</horizontal_fov>
+            <image>
+              <width>106</width>
+              <height>60</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>4</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.1</stddev>
+            </noise>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>10</update_rate>
+          <visualize>1</visualize>
+          <pose>0.27 0.015 0.086 0 -0 0</pose>
+        </sensor>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='LF_HAA' type='revolute'>
+        <pose relative_to='base'>0.1881 0.04675 0 0 -0 0</pose>
+        <parent>base</parent>
+        <child>LF_hip</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-0.863</lower>
+            <upper>0.863</upper>
+            <effort>23.7</effort>
+            <velocity>30.1</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0.2</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='LF_hip'>
+        <pose relative_to='LF_HAA'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>-0.005657 -0.008752 -0.000102 0 -0 0</pose>
+          <mass>0.591</mass>
+          <inertia>
+            <ixx>0.000334008</ixx>
+            <ixy>-1.08261e-05</ixy>
+            <ixz>1.29073e-06</ixz>
+            <iyy>0.000619101</iyy>
+            <iyz>1.64319e-06</iyz>
+            <izz>0.000400576</izz>
+          </inertia>
+        </inertial>
+        <collision name='LF_hip_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.046</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='LF_hip_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/hip.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='LF_HFE' type='revolute'>
+        <pose relative_to='LF_hip'>0 0.08 0 0 -0 0</pose>
+        <parent>LF_hip</parent>
+        <child>LF_thigh</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-0.686</lower>
+            <upper>4.501</upper>
+            <effort>23.7</effort>
+            <velocity>30.1</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0.2</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='LF_thigh'>
+        <pose relative_to='LF_HFE'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>-0.003342 -0.018054 -0.033451 0 -0 0</pose>
+          <mass>0.92</mass>
+          <inertia>
+            <ixx>0.00443176</ixx>
+            <ixy>5.74968e-05</ixy>
+            <ixz>-0.000218457</ixz>
+            <iyy>0.00448567</iyy>
+            <iyz>0.000572001</iyz>
+            <izz>0.000740309</izz>
+          </inertia>
+        </inertial>
+        <collision name='LF_thigh_collision'>
+          <pose>-0.015 0 -0.1065 3.14159 1.4708 3.14159</pose>
+          <geometry>
+            <box>
+              <size>0.213 0.0245 0.034</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='LF_thigh_collision_1'>
+          <pose>0 -0.008 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.032</length>
+              <radius>0.041</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='LF_thigh_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/thigh.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='LF_KFE' type='revolute'>
+        <pose relative_to='LF_thigh'>0 0 -0.213 0 -0 0</pose>
+        <parent>LF_thigh</parent>
+        <child>LF_calf</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.818</lower>
+            <upper>-0.888</upper>
+            <effort>35.55</effort>
+            <velocity>20.06</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0.2</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='LF_calf'>
+        <pose relative_to='LF_KFE'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0.006197 0.001408 -0.116695 0 -0 0</pose>
+          <mass>0.135862</mass>
+          <inertia>
+            <ixx>0.00108879</ixx>
+            <ixy>-2.55679e-07</ixy>
+            <ixz>7.11781e-06</ixz>
+            <iyy>0.00110043</iyy>
+            <iyz>2.07726e-06</iyz>
+            <izz>2.47874e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='LF_calf_collision'>
+          <pose>0 0 -0.1065 3.14159 1.57079 3.14159</pose>
+          <geometry>
+            <box>
+              <size>0.213 0.016 0.016</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='LF_calf_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/calf.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='LF_foot_fixed' type='revolute'>
+        <pose relative_to='LF_calf'>0 0 -0.213 0 -0 0</pose>
+        <parent>LF_calf</parent>
+        <child>LF_FOOT</child>
+        <axis>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <xyz>0 0 1</xyz>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='LF_FOOT'>
+        <pose relative_to='LF_foot_fixed'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.06</mass>
+          <inertia>
+            <ixx>9.6e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>9.6e-06</iyy>
+            <iyz>0</iyz>
+            <izz>9.6e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='LF_FOOT_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.02</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='LF_FOOT_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.01</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='LH_HAA' type='revolute'>
+        <pose relative_to='base'>-0.1881 0.04675 0 0 -0 0</pose>
+        <parent>base</parent>
+        <child>LH_hip</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-0.863</lower>
+            <upper>0.863</upper>
+            <effort>23.7</effort>
+            <velocity>30.1</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0.2</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='LH_hip'>
+        <pose relative_to='LH_HAA'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0.005657 -0.008752 -0.000102 0 -0 0</pose>
+          <mass>0.591</mass>
+          <inertia>
+            <ixx>0.000334008</ixx>
+            <ixy>1.08261e-05</ixy>
+            <ixz>-1.29073e-06</ixz>
+            <iyy>0.000619101</iyy>
+            <iyz>1.64319e-06</iyz>
+            <izz>0.000400576</izz>
+          </inertia>
+        </inertial>
+        <collision name='LH_hip_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.046</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='LH_hip_visual'>
+          <pose>0 0 0 3.14159 -0 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/hip.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='LH_HFE' type='revolute'>
+        <pose relative_to='LH_hip'>0 0.08 0 0 -0 0</pose>
+        <parent>LH_hip</parent>
+        <child>LH_thigh</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-0.686</lower>
+            <upper>4.501</upper>
+            <effort>23.7</effort>
+            <velocity>30.1</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0.2</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='LH_thigh'>
+        <pose relative_to='LH_HFE'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>-0.003342 -0.018054 -0.033451 0 -0 0</pose>
+          <mass>0.92</mass>
+          <inertia>
+            <ixx>0.00443176</ixx>
+            <ixy>5.74968e-05</ixy>
+            <ixz>-0.000218457</ixz>
+            <iyy>0.00448567</iyy>
+            <iyz>0.000572001</iyz>
+            <izz>0.000740309</izz>
+          </inertia>
+        </inertial>
+        <collision name='LH_thigh_collision'>
+          <pose>-0.015 0 -0.1065 3.14159 1.4708 3.14159</pose>
+          <geometry>
+            <box>
+              <size>0.213 0.0245 0.034</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='LH_thigh_collision_1'>
+          <pose>0 -0.008 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.032</length>
+              <radius>0.041</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='LH_thigh_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/thigh.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='LH_KFE' type='revolute'>
+        <pose relative_to='LH_thigh'>0 0 -0.213 0 -0 0</pose>
+        <parent>LH_thigh</parent>
+        <child>LH_calf</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.818</lower>
+            <upper>-0.888</upper>
+            <effort>35.55</effort>
+            <velocity>20.06</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0.2</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='LH_calf'>
+        <pose relative_to='LH_KFE'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0.006197 0.001408 -0.116695 0 -0 0</pose>
+          <mass>0.135862</mass>
+          <inertia>
+            <ixx>0.00108879</ixx>
+            <ixy>-2.55679e-07</ixy>
+            <ixz>7.11781e-06</ixz>
+            <iyy>0.00110043</iyy>
+            <iyz>2.07726e-06</iyz>
+            <izz>2.47874e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='LH_calf_collision'>
+          <pose>0 0 -0.1065 3.14159 1.57079 3.14159</pose>
+          <geometry>
+            <box>
+              <size>0.213 0.016 0.016</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='LH_calf_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/calf.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='LH_foot_fixed' type='revolute'>
+        <pose relative_to='LH_calf'>0 0 -0.213 0 -0 0</pose>
+        <parent>LH_calf</parent>
+        <child>LH_FOOT</child>
+        <axis>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <xyz>0 0 1</xyz>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='LH_FOOT'>
+        <pose relative_to='LH_foot_fixed'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.06</mass>
+          <inertia>
+            <ixx>9.6e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>9.6e-06</iyy>
+            <iyz>0</iyz>
+            <izz>9.6e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='LH_FOOT_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.02</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='LH_FOOT_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.01</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='RF_HAA' type='revolute'>
+        <pose relative_to='base'>0.1881 -0.04675 0 0 -0 0</pose>
+        <parent>base</parent>
+        <child>RF_hip</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-0.863</lower>
+            <upper>0.863</upper>
+            <effort>23.7</effort>
+            <velocity>30.1</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0.2</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='RF_hip'>
+        <pose relative_to='RF_HAA'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>-0.005657 0.008752 -0.000102 0 -0 0</pose>
+          <mass>0.591</mass>
+          <inertia>
+            <ixx>0.000334008</ixx>
+            <ixy>1.08261e-05</ixy>
+            <ixz>1.29073e-06</ixz>
+            <iyy>0.000619101</iyy>
+            <iyz>-1.64319e-06</iyz>
+            <izz>0.000400576</izz>
+          </inertia>
+        </inertial>
+        <collision name='RF_hip_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.046</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='RF_hip_visual'>
+          <pose>0 0 0 3.14159 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/hip.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='RF_HFE' type='revolute'>
+        <pose relative_to='RF_hip'>0 -0.08 0 0 -0 0</pose>
+        <parent>RF_hip</parent>
+        <child>RF_thigh</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-0.686</lower>
+            <upper>4.501</upper>
+            <effort>23.7</effort>
+            <velocity>30.1</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0.2</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='RF_thigh'>
+        <pose relative_to='RF_HFE'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>-0.003342 0.018054 -0.033451 0 -0 0</pose>
+          <mass>0.92</mass>
+          <inertia>
+            <ixx>0.00443176</ixx>
+            <ixy>-5.74968e-05</ixy>
+            <ixz>-0.000218457</ixz>
+            <iyy>0.00448567</iyy>
+            <iyz>-0.000572001</iyz>
+            <izz>0.000740309</izz>
+          </inertia>
+        </inertial>
+        <collision name='RF_thigh_collision'>
+          <pose>-0.015 0 -0.1065 3.14159 1.4708 3.14159</pose>
+          <geometry>
+            <box>
+              <size>0.213 0.0245 0.034</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='RF_thigh_collision_1'>
+          <pose>0 0.008 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.032</length>
+              <radius>0.041</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='RF_thigh_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/thigh_mirror.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='RF_KFE' type='revolute'>
+        <pose relative_to='RF_thigh'>0 0 -0.213 0 -0 0</pose>
+        <parent>RF_thigh</parent>
+        <child>RF_calf</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.818</lower>
+            <upper>-0.888</upper>
+            <effort>35.55</effort>
+            <velocity>20.06</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0.2</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='RF_calf'>
+        <pose relative_to='RF_KFE'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0.006197 0.001408 -0.116695 0 -0 0</pose>
+          <mass>0.135862</mass>
+          <inertia>
+            <ixx>0.00108879</ixx>
+            <ixy>-2.55679e-07</ixy>
+            <ixz>7.11781e-06</ixz>
+            <iyy>0.00110043</iyy>
+            <iyz>2.07726e-06</iyz>
+            <izz>2.47874e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='RF_calf_collision'>
+          <pose>0 0 -0.1065 3.14159 1.57079 3.14159</pose>
+          <geometry>
+            <box>
+              <size>0.213 0.016 0.016</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='RF_calf_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/calf.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='RF_foot_fixed' type='revolute'>
+        <pose relative_to='RF_calf'>0 0 -0.213 0 -0 0</pose>
+        <parent>RF_calf</parent>
+        <child>RF_FOOT</child>
+        <axis>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <xyz>0 0 1</xyz>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='RF_FOOT'>
+        <pose relative_to='RF_foot_fixed'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.06</mass>
+          <inertia>
+            <ixx>9.6e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>9.6e-06</iyy>
+            <iyz>0</iyz>
+            <izz>9.6e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='RF_FOOT_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.02</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='RF_FOOT_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.01</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='RH_HAA' type='revolute'>
+        <pose relative_to='base'>-0.1881 -0.04675 0 0 -0 0</pose>
+        <parent>base</parent>
+        <child>RH_hip</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-0.863</lower>
+            <upper>0.863</upper>
+            <effort>23.7</effort>
+            <velocity>30.1</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0.2</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='RH_hip'>
+        <pose relative_to='RH_HAA'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0.005657 0.008752 -0.000102 0 -0 0</pose>
+          <mass>0.591</mass>
+          <inertia>
+            <ixx>0.000334008</ixx>
+            <ixy>-1.08261e-05</ixy>
+            <ixz>-1.29073e-06</ixz>
+            <iyy>0.000619101</iyy>
+            <iyz>-1.64319e-06</iyz>
+            <izz>0.000400576</izz>
+          </inertia>
+        </inertial>
+        <collision name='RH_hip_collision'>
+          <pose>0 0 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.04</length>
+              <radius>0.046</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='RH_hip_visual'>
+          <pose>0 0 0 0 -0 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/hip.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='RH_HFE' type='revolute'>
+        <pose relative_to='RH_hip'>0 -0.08 0 0 -0 0</pose>
+        <parent>RH_hip</parent>
+        <child>RH_thigh</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-0.686</lower>
+            <upper>4.501</upper>
+            <effort>23.7</effort>
+            <velocity>30.1</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0.2</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='RH_thigh'>
+        <pose relative_to='RH_HFE'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>-0.003342 0.018054 -0.033451 0 -0 0</pose>
+          <mass>0.92</mass>
+          <inertia>
+            <ixx>0.00443176</ixx>
+            <ixy>-5.74968e-05</ixy>
+            <ixz>-0.000218457</ixz>
+            <iyy>0.00448567</iyy>
+            <iyz>-0.000572001</iyz>
+            <izz>0.000740309</izz>
+          </inertia>
+        </inertial>
+        <collision name='RH_thigh_collision'>
+          <pose>-0.015 0 -0.1065 3.14159 1.4708 3.14159</pose>
+          <geometry>
+            <box>
+              <size>0.213 0.0245 0.034</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='RH_thigh_collision_1'>
+          <pose>0 0.008 0 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.032</length>
+              <radius>0.041</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='RH_thigh_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/thigh_mirror.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='RH_KFE' type='revolute'>
+        <pose relative_to='RH_thigh'>0 0 -0.213 0 -0 0</pose>
+        <parent>RH_thigh</parent>
+        <child>RH_calf</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.818</lower>
+            <upper>-0.888</upper>
+            <effort>35.55</effort>
+            <velocity>20.06</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.01</damping>
+            <friction>0.2</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='RH_calf'>
+        <pose relative_to='RH_KFE'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0.006197 0.001408 -0.116695 0 -0 0</pose>
+          <mass>0.135862</mass>
+          <inertia>
+            <ixx>0.00108879</ixx>
+            <ixy>-2.55679e-07</ixy>
+            <ixz>7.11781e-06</ixz>
+            <iyy>0.00110043</iyy>
+            <iyz>2.07726e-06</iyz>
+            <izz>2.47874e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='RH_calf_collision'>
+          <pose>0 0 -0.1065 3.14159 1.57079 3.14159</pose>
+          <geometry>
+            <box>
+              <size>0.213 0.016 0.016</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='RH_calf_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_description/meshes/go1/calf.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='RH_foot_fixed' type='revolute'>
+        <pose relative_to='RH_calf'>0 0 -0.213 0 -0 0</pose>
+        <parent>RH_calf</parent>
+        <child>RH_FOOT</child>
+        <axis>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <xyz>0 0 1</xyz>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='RH_FOOT'>
+        <pose relative_to='RH_foot_fixed'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.06</mass>
+          <inertia>
+            <ixx>9.6e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>9.6e-06</iyy>
+            <iyz>0</iyz>
+            <izz>9.6e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='RH_FOOT_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.02</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>100</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.6</mu>
+                <mu2>0.6</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='RH_FOOT_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.01</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>1</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='base_imu_joint' type='revolute'>
+        <pose relative_to='base'>0 0 0 0 -0 0</pose>
+        <parent>base</parent>
+        <child>base_imu</child>
+        <axis>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <xyz>0 0 1</xyz>
+        </axis>
+        <physics>
+          <ode>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='base_imu'>
+        <pose relative_to='base_imu_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1e-06</iyy>
+            <iyz>0</iyz>
+            <izz>1e-06</izz>
+          </inertia>
+        </inertial>
+        <visual name='base_imu_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.015 0.015 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <plugin name='gazebo_ros_control' filename='liblegged_hw_sim.so'>
+        <robotNamespace>/</robotNamespace>
+        <robotParam>legged_robot_description</robotParam>
+        <robotSimType>legged_gazebo/LeggedHWSim</robotSimType>
+      </plugin>
+      <plugin name='p3d_base_controller' filename='libgazebo_ros_p3d.so'>
+        <alwaysOn>1</alwaysOn>
+        <updateRate>1000.0</updateRate>
+        <bodyName>base</bodyName>
+        <topicName>ground_truth/state</topicName>
+        <gaussianNoise>0</gaussianNoise>
+        <frameName>world</frameName>
+        <xyzOffsets>0 0 0</xyzOffsets>
+        <rpyOffsets>0 0 0</rpyOffsets>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <static>0</static>
+      <plugin name='camera' filename='/home/bridge/Bridge_hub/parkour_ws/devel/lib/librealsense_gazebo_plugin.so'>
+        <prefix>d435</prefix>
+        <depthUpdateRate>15.0</depthUpdateRate>
+        <depthTopicName>depth/image_rect_raw</depthTopicName>
+        <depthCameraInfoTopicName>depth/camera_info</depthCameraInfoTopicName>
+        <depthOpticalframeName>camera_depth_optical_frame</depthOpticalframeName>
+        <rangeMinDepth>0.1</rangeMinDepth>
+        <rangeMaxDepth>4</rangeMaxDepth>
+        <pointCloud>0</pointCloud>
+        <pointCloudTopicName>depth/points</pointCloudTopicName>
+        <pointCloudCutoff>0.175</pointCloudCutoff>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <pose>0 0 0.15 0 -0 0</pose>
+    </model>
+    <model name='low_box'>
+      <pose>0.093662 0.040815 0 0 -0 0</pose>
+      <link name='Wall_0'>
+        <collision name='Wall_0_Collision'>
+          <geometry>
+            <box>
+              <size>1 0.5 0.3</size>
+            </box>
+          </geometry>
+          <pose>0 0 0.15 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_0_Visual'>
+          <pose>0 0 0.15 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1 0.5 0.3</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+          <meta>
+            <layer>0</layer>
+          </meta>
+        </visual>
+        <pose>1.105 -0 0 0 -0 1.5708</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+  </world>
+</sdf>

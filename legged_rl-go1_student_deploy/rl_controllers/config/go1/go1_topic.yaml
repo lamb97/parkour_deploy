@@ -1,0 +1,2 @@
+camera:
+  depth_image_topic: "/camera/depth/image_rect_raw"

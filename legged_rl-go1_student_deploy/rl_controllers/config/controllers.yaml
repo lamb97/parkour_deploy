@@ -1,0 +1,12 @@
+controllers:
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 100
+  legged_controller:
+    type: legged/RLControllerBase
+  image_controller:
+    type: legged/ImageController
+  parkour_controller:
+    type: legged/ParkourController
+
+

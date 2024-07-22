@@ -1,0 +1,17 @@
+<library path="lib/librl_controllers">
+
+    <class name="legged/ParkourController" type="legged::ParkourController"
+           base_class_type="controller_interface::ControllerBase">
+        <description>
+            The parkour controller.
+        </description>
+    </class>
+
+    <class name="legged/ImageController" type="legged::ImageController"
+           base_class_type="controller_interface::ControllerBase">
+        <description>
+            The image controller.
+        </description>
+    </class>
+    
+</library>

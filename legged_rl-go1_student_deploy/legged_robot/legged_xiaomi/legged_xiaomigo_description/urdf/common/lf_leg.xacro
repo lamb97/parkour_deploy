@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find legged_xiaomigo_description)/urdf/common/transmission.xacro"/>
+
+    <xacro:macro name="lf_leg" params="prefix mirror mirror_dae front_hind front_hind_dae *origin">
+
+        <joint name="${prefix}_HAA" type="revolute">
+            <xacro:insert_block name="origin"/>
+            <parent link="base"/>
+            <child link="${prefix}_hip"/>
+            <axis xyz="1 0 0"/>
+            
+            <dynamics damping="${damping}" friction="${friction}"/>
+            <xacro:if value="${(mirror_dae == True)}">
+                <limit effort="${hip_torque_max}" velocity="${hip_velocity_max}" lower="${hip_min}"
+                       upper="${hip_max}"/>
+            </xacro:if>
+            <xacro:if value="${(mirror_dae == False)}">
+                <limit effort="${hip_torque_max}" velocity="${hip_velocity_max}" lower="${-hip_max}"
+                       upper="${-hip_min}"/>
+            </xacro:if>
+        </joint>
+
+        <link name="${prefix}_hip">
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+
+                <geometry>
+                    <mesh filename="package://legged_xiaomigo_description/meshes/$(arg robot_type)/FL_hip_link.STL" scale="1 1 1"/>
+                </geometry>
+                <material name="white"/>
+            </visual>
+
+            <collision>
+                <origin rpy="${pi/2.0} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="${hip_length}" radius="${hip_radius}"/>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <origin rpy="0 0 0" xyz="0.04204253 0.0026107 0.00018828"/>
+                <mass value="0.33715286"/>
+                <inertia
+                        ixx="0.00013632" ixy="-0.00003805" ixz="-0.00000199"
+                        iyy="0.00083791" iyz="0.00000007"
+                        izz="0.00075374"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}_HFE" type="revolute">
+        <!-- c -->
+            <!-- <origin rpy="0 0 0" xyz="0 ${thigh_offset*mirror} 0"/> -->
+            <origin rpy="0 0.0 0" xyz="0.0445 0.01855 0"/>
+
+            <parent link="${prefix}_hip"/>
+            <child link="${prefix}_thigh"/>
+            <axis xyz="0 1 0"/>
+
+            <dynamics damping="${damping}" friction="${friction}"/>
+            <limit effort="${thigh_torque_max}" velocity="${thigh_velocity_max}" lower="${thigh_min}"
+                   upper="${thigh_max}"/>
+        </joint>
+
+        <link name="${prefix}_thigh">
+
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://legged_xiaomigo_description/meshes/$(arg robot_type)/FL_thigh_link.STL"
+                          scale="1 1 1"/>
+                </geometry>
+                <material name="white"/>
+            </visual>
+            
+            <collision>
+                <origin rpy="0 ${pi/2.0} 0" xyz="0 0 ${-thigh_length/2.0}"/>
+                <geometry>
+                    <box size="${thigh_length} ${thigh_width} ${thigh_height}"/>
+                </geometry>
+            </collision>
+
+            <collision>
+                <origin rpy="${pi/2.0} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="${thigh_shoulder_length}" radius="${thigh_shoulder_radius}"/>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <origin rpy="0 0 0" xyz="-0.00118155 0.03107249 -0.03088302"/>
+                <mass value="0.60691626"/>
+                <inertia
+                        ixx="0.00217460" ixy="0.00004829" ixz="-0.00004636"
+                        iyy="0.00105387" iyz="0.00041054"
+                        izz="0.00160353"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}_KFE" type="revolute">
+        <!-- cc -->
+            <origin rpy="0 0 0" xyz="0 0.059 ${-thigh_length}"/>
+
+            <parent link="${prefix}_thigh"/>
+            <child link="${prefix}_calf"/>
+            <axis xyz="0 1 0"/>
+            <dynamics damping="${damping}" friction="${friction}"/>
+            <limit effort="${calf_torque_max}" velocity="${calf_velocity_max}" lower="${calf_min}" upper="${calf_max}"/>
+        </joint>
+
+        <link name="${prefix}_calf">
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://legged_xiaomigo_description/meshes/$(arg robot_type)/FL_calf_link.STL" scale="1 1 1"/>
+                </geometry>
+                <material name="white"/>
+            </visual>
+            <collision>
+                <origin rpy="0 ${pi/2.0} 0" xyz="0 0 ${-calf_length/2.0}"/>
+                <geometry>
+                    <box size="${calf_length} ${calf_width} ${calf_height}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin rpy="0 0 0" xyz="${calf_com_x} ${calf_com_y} ${calf_com_z}"/>
+                <mass value="${calf_mass}"/>
+                <inertia
+                        ixx="${calf_ixx}" ixy="${calf_ixy}" ixz="${calf_ixz}"
+                        iyy="${calf_iyy}" iyz="${calf_iyz}"
+                        izz="${calf_izz}"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}_foot_fixed" type="fixed">
+            <origin rpy="0 0 0" xyz="0 0 ${-(calf_length)}"/>
+            <parent link="${prefix}_calf"/>
+            <child link="${prefix}_FOOT"/>
+        </joint>
+
+        <link name="${prefix}_FOOT">
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <sphere radius="${foot_radius}"/>
+                    <!-- <mesh filename="package://legged_xiaomigo_description/meshes/$(arg robot_type)/FL_toe_link.STL" scale="1 1 1"/> -->
+                </geometry>
+                <material name="white"/>
+            </visual>
+            <collision>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <sphere radius="${foot_radius}"/>
+                </geometry>
+            </collision>
+            <!-- <inertial>
+                <mass value="${foot_mass}"/>
+                <inertia
+                        ixx="${(2*foot_mass)/5.0*(foot_radius*foot_radius)}" ixy="0.0" ixz="0.0"
+                        iyy="${(2*foot_mass)/5.0*(foot_radius*foot_radius)}" iyz="0.0"
+                        izz="${(2*foot_mass)/5.0*(foot_radius*foot_radius)}"/>
+            </inertial> -->
+            <!-- <inertial>
+                <mass value="${0.0}"/>
+                <inertia
+                        ixx="0.0" ixy="0.0" ixz="0.0"
+                        iyy="0.0" iyz="0.0"
+                        izz="0.0"/>
+            </inertial> -->
+            <inertial>
+                <mass value="${foot_mass}"/>
+                <origin rpy="0 0 0" xyz="${foot_com_x} ${foot_com_y} ${foot_com_z}"/>
+                <inertia
+                        ixx="${foot_ixx}" ixy="${foot_ixy}" ixz="${foot_ixz}"
+                        iyy="${foot_iyy}" iyz="${foot_iyz}"
+                        izz="${foot_izz}"/>
+            </inertial>
+
+        </link>
+
+        <gazebo reference="${prefix}_foot_fixed">
+            <disableFixedJointLumping>true</disableFixedJointLumping>
+        </gazebo>
+
+        <xacro:leg_transmission name="${prefix}"/>
+    </xacro:macro>
+</robot>

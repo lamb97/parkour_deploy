@@ -1,0 +1,30 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "${default}",
+                "limitSymbolsToIncludedHeaders": false
+            },
+            "includePath": [
+                "/home/bridge/Bridge_hub/parkour_ws/devel/include/**",
+                "/opt/ros/noetic/include/**",
+                "/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_base/legged_common/include/**",
+                "/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_base/legged_gazebo/include/**",
+                "/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_lt/legged_lt_hw/include/**",
+                "/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_base/legged_hw/include/**",
+                "/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/legged_robot/legged_unitree/legged_unitree_hw/include/**",
+                "/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/realsense_gazebo_plugin/include/**",
+                "/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/rl_controllers/include/**",
+                "/home/bridge/Bridge_hub/parkour_ws/src/legged_rl/yesense_ros/rosserial/include/**",
+                "/usr/include/**",
+                "${workspaceFolder}/legged_rl-go1_student_deploy/image_mnn/include"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "c++14"
+        }
+    ],
+    "version": 4
+}

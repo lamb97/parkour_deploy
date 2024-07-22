@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="camera">
+    <xacro:macro name="sensor_d435" params="connected_to">
+        <xacro:property name="deg_to_rad" value="0.01745329251994329577"/>
+        <xacro:property name="M_PI" value="3.1415926535897931"/>
+
+        <!-- 深度相机关节 -->
+        <joint name="camera_depth_joint" type="fixed">
+            <!-- 相机连接的位置 -->
+            <origin xyz="0.27 0.015 0.086" rpy="0 0.0 0"/>
+            <!-- 父链接 -->
+            <parent link="${connected_to}"/>
+            <!-- 子链接 -->
+            <child link="camera_depth_frame"/>
+        </joint>
+
+        <!-- 相机深度帧 -->
+        <link name="camera_depth_frame">
+            <inertial>
+                <!-- 惯性 -->
+                <mass value="0.0001" />
+                <origin xyz="0 0 0" />
+                <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001" />
+            </inertial>
+            <visual>
+                <!-- 相机可视化 -->
+                <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+                <!-- 相机的几何形状 -->
+                <geometry>
+                    <mesh filename="package://legged_unitree_description/meshes/d435.dae" />
+                </geometry>
+            </visual>
+            <collision>
+                <!-- 相机碰撞 -->
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.01 0.04 0.04" />
+                </geometry>
+            </collision>
+        </link>
+
+        <!-- 相机深度光学帧 -->
+        <joint name="camera_depth_optical_joint" type="fixed">
+            <!-- 光学帧的原点和旋转 -->
+            <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}"/>
+            <!-- 父链接 -->
+            <parent link="camera_depth_frame"/>
+            <!-- 子链接 -->
+            <child link="camera_depth_optical_frame"/>
+        </joint>
+        <link name="camera_depth_optical_frame"/>
+
+        <!-- Gazebo 插件 -->
+        <gazebo reference="camera_depth_frame">
+            <!-- 相机传感器 -->
+            <sensor name="d435depth" type="depth">
+                <camera name="d435">
+                    <!-- 相机水平视场角 -->
+                    <horizontal_fov>${87*deg_to_rad}</horizontal_fov>
+                    <!-- 相机图像分辨率 -->
+                    <image>
+                        <width>106</width>
+                        <height>60</height>
+                    </image>
+                    <!-- 深度相机裁剪范围 -->
+                    <clip>
+                        <near>0.1</near>
+                        <far>4</far>
+                    </clip>
+                    <!-- 相机噪声 -->
+                    <noise>
+                        <type>gaussian</type>
+                        <mean>0.0</mean>    
+                        <stddev>0.100</stddev>
+                    </noise>
+                </camera>
+                <!-- 永远保持   动 -->
+                <always_on>1</always_on>
+                <!-- 更新频率 -->
+                <update_rate>10</update_rate>
+                <!-- 不可视化 -->
+                <visualize>1</visualize>
+            </sensor>
+        </gazebo>
+
+        <gazebo>
+            <!-- Gazebo 插件 -->    
+            <plugin name="camera" filename="/home/lamb97/d435_ws/devel/lib/librealsense_gazebo_plugin.so">
+                <!-- 深度相机前缀 -->
+                <prefix>d435</prefix>
+                <!-- 深度更新率 -->
+                <depthUpdateRate>15.0</depthUpdateRate>
+                <!-- 深度图像主题 -->
+                <depthTopicName>depth/image_rect_raw</depthTopicName>
+                <!-- 深度相机信息主题 -->
+                <depthCameraInfoTopicName>depth/camera_info</depthCameraInfoTopicName>
+                <!-- 深度光学帧名称 --> 
+                <depthOpticalframeName>camera_depth_optical_frame</depthOpticalframeName>
+                <!-- 深度传感器最小范围 -->
+                <rangeMinDepth>0.1</rangeMinDepth>
+                <!-- 深度传感器最大范围 -->
+                <rangeMaxDepth>4</rangeMaxDepth>
+                <!-- 启用点云 -->
+                <pointCloud>false</pointCloud>
+                <!-- 点云主题 -->
+                <pointCloudTopicName>depth/points</pointCloudTopicName>
+                <!-- 点云裁剪 -->
+                <pointCloudCutoff>0.175</pointCloudCutoff>
+            </plugin>
+        </gazebo>
+    </xacro:macro>
+</robot>
