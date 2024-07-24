@@ -210,6 +210,11 @@ namespace legged
     imuData_.angularVelCov_[0] = 0.0004;
     imuData_.angularVelCov_[4] = 0.0004;
     imuData_.angularVelCov_[8] = 0.0004;
+    
+  // double linearAccCov_[9];   // NOLINT(modernize-avoid-c-arrays)
+    // imuData_.linearAccCov_[0] = 0.01;
+    // imuData_.linearAccCov_[4] = 0.01;
+    // imuData_.linearAccCov_[8] = 0.01;
 
     return true;
   }

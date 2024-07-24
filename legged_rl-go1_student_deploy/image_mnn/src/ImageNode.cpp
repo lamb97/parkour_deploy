@@ -107,23 +107,23 @@ void ImageNode::printTensorDimensions(const MNN::Tensor *tensor)
     auto dims = tensor->shape();
 
     // 输出维度信息
-    std::cout << "Tensor dimensions: [";
+    //std::cout << "Tensor dimensions: [";
     for (size_t i = 0; i < dims.size(); ++i)
     {
-        std::cout << dims[i];
+        // std::cout << dims[i];
         if (i != dims.size() - 1)
         {
-            std::cout << ", ";
+            // std::cout << ", ";
         }
     }
-    std::cout << "]" << std::endl;
-    std::cout << "inputSize:" << tensor->elementSize() << std::endl;
+    //std::cout << "]" << std::endl;
+    //std::cout << "inputSize:" << tensor->elementSize() << std::endl;
 }
 
 // 函数：打印cv::Mat对象的维度信息
 void printMatInfo(const cv::Mat &img)
 {
-    std::cout << "Dimensions: " << img.rows << " x " << img.cols << std::endl;
+    // std::cout << "Dimensions: " << img.rows << " x " << img.cols << std::endl;
 
     // 获取数据类型的字符串表示
     std::string rtype;
@@ -159,7 +159,7 @@ void printMatInfo(const cv::Mat &img)
     rtype += "C";
     rtype += (chans + '0');
 
-    std::cout << "Data type: CV_" << rtype << std::endl;
+    // std::cout << "Data type: CV_" << rtype << std::endl;
 }
 
 // 打印 MNN Tensor 的函数定义
@@ -172,7 +172,7 @@ void printMNNTensor(const MNN::Tensor *tensor)
     }
 
     // 打印数据类型
-    std::cout << "Data Type: ";
+    // std::cout << "Data Type: ";
     switch (tensor->getType().code)
     {
     case halide_type_int:
@@ -197,12 +197,12 @@ void printMNNTensor(const MNN::Tensor *tensor)
     int dimensionCount = dims.size();
 
     // 打印张量的维度信息
-    std::cout << "Tensor dimensions: ";
+    //std::cout << "Tensor dimensions: ";
     for (int i = 0; i < dimensionCount; ++i)
     {
         // std::cout << dims[i] << " ";/
     }
-    std::cout << std::endl;
+    //std::cout << std::endl;
 
     // 计算张量中的元素总数，并打印每一步的结果
     int elementCount = 1;
@@ -210,7 +210,7 @@ void printMNNTensor(const MNN::Tensor *tensor)
     {
         elementCount *= dims[i];
     }
-    std::cout << "Total elements: " << elementCount << std::endl;
+    // std::cout << "Total elements: " << elementCount << std::endl;
 
     // 确认数据类型为 float
     if (tensor->getType().code != halide_type_float)
@@ -223,12 +223,12 @@ void printMNNTensor(const MNN::Tensor *tensor)
     const float *data = tensor->host<float>();
 
     // 打印张量的值
-    std::cout << "Tensor values: ";
+    //std::cout << "Tensor values: ";
     for (int i = 0; i < elementCount; ++i)
     {
         // std::cout << data[i] << " ";
     }
-    std::cout << std::endl;
+    //std::cout << std::endl;
 }
 
 void ImageNode::updateInputImage()
@@ -388,8 +388,8 @@ void ImageNode::computeLaten()
     outputdepthLatent_->copyToHostTensor(tmp_tensor);
     for (size_t i = 0; i < tmp_tensor->elementSize(); ++i)
     {
-        latentMsg_.data[i] = tmp_tensor->host<float>()[i];
-        // latentMsg_.data[i] = 0;
+        // latentMsg_.data[i] = tmp_tensor->host<float>()[i];
+        latentMsg_.data[i] = 0;
     }
     delete tmp_tensor;
 
@@ -447,10 +447,10 @@ bool ImageNode::loadModel(ros::NodeHandle &nh)
     // Get input info
     inputImage_ = interpreterImage_->getSessionInput(Imagesession_, "image");
     inputObs_ = interpreterImage_->getSessionInput(Imagesession_, "propri");
-    inputHidden_ = interpreterImage_->getSessionInput(Imagesession_, "hidden_state.1");
+    inputHidden_ = interpreterImage_->getSessionInput(Imagesession_, "hidden");
     // Get output info
-    outputdepthLatent_ = interpreterImage_->getSessionOutput(Imagesession_, "depth_latent");
-    outputHidden_ = interpreterImage_->getSessionOutput(Imagesession_, "hidden_state");
+    outputdepthLatent_ = interpreterImage_->getSessionOutput(Imagesession_, "hidden_state,depth_latent");
+    outputHidden_ = interpreterImage_->getSessionOutput(Imagesession_, "96");
 
     initMNNTensorWithZero(inputImage_);
     initMNNTensorWithZero(inputObs_);

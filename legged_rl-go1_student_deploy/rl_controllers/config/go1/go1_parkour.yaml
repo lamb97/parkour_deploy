@@ -7,11 +7,11 @@ LeggedRobotCfg:
       LF_KFE_joint: -1.5
 
       RF_HAA_joint: -0.1
-      RF_HFE_joint: 1.0
+      RF_HFE_joint: 0.8
       RF_KFE_joint: -1.5
 
       LH_HAA_joint: 0.1
-      LH_HFE_joint: 0.8
+      LH_HFE_joint: 1.0
       LH_KFE_joint: -1.5
  
       RH_HAA_joint: -0.1
@@ -20,10 +20,10 @@ LeggedRobotCfg:
 
   control:
     # PD Drive parameters:
-    stiffness: 40.0
-    damping: 1
+    stiffness: 20.0
+    damping: 0.5
     action_scale: 0.25
-    decimation: 10
+    decimation: 20
 
   normalization:
     clip_scales:
@@ -38,4 +38,4 @@ LeggedRobotCfg:
 
   size:
     actions_size: 12
-    observations_size: 753
+    observations_size: 665

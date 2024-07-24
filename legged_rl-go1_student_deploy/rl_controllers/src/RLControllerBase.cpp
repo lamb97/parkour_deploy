@@ -15,11 +15,11 @@ namespace legged
     //                                     "RF_HAA", "RF_HFE", "RF_KFE",
     //                                     "LH_HAA", "LH_HFE", "LH_KFE",
     //                                     "RH_HAA", "RH_HFE", "RH_KFE"};
-    std::vector<std::string> jointNames{"RF_HAA", "RF_HFE", "RF_KFE",
-                                        "LF_HAA", "LF_HFE", "LF_KFE",
-                                        "RH_HAA", "RH_HFE", "RH_KFE",
-                                        "LH_HAA", "LH_HFE", "LH_KFE"};
-    std::vector<std::string> footNames{"RF_FOOT", "LF_FOOT", "RH_FOOT", "LH_FOOT"};
+    std::vector<std::string> jointNames{"LF_HAA", "LF_HFE", "LF_KFE",
+                                        "RF_HAA", "RF_HFE", "RF_KFE",
+                                        "LH_HAA", "LH_HFE", "LH_KFE",
+                                        "RH_HAA", "RH_HFE", "RH_KFE"};
+    std::vector<std::string> footNames{"LF_FOOT", "RF_FOOT", "LH_FOOT", "RH_FOOT"};
     // std::vector<std::string> jointNames{"FL_hip_joint", "FL_thigh_joint", "FL_calf_joint",
     //                                     "FR_hip_joint", "FR_thigh_joint", "FR_calf_joint",
     //                                     "RL_hip_joint", "RL_thigh_joint", "RL_calf_joint",
@@ -68,15 +68,15 @@ namespace legged
     }
 
     // Stand Lie joint
-    lieJointAngles_ << LieState.RF_HAA_joint, LieState.RF_HFE_joint, LieState.RF_KFE_joint,
-                       LieState.LF_HAA_joint, LieState.LF_HFE_joint, LieState.LF_KFE_joint,
-                       LieState.RH_HAA_joint, LieState.RH_HFE_joint, LieState.RH_KFE_joint,
-                       LieState.LH_HAA_joint, LieState.LH_HFE_joint, LieState.LH_KFE_joint;
+    lieJointAngles_ << LieState.LF_HAA_joint, LieState.LF_HFE_joint, LieState.LF_KFE_joint,
+                       LieState.RF_HAA_joint, LieState.RF_HFE_joint, LieState.RF_KFE_joint,
+                       LieState.LH_HAA_joint, LieState.LH_HFE_joint, LieState.LH_KFE_joint,
+                       LieState.RH_HAA_joint, LieState.RH_HFE_joint, LieState.RH_KFE_joint;
 
-    standJointAngles_ << StandState.RF_HAA_joint, StandState.RF_HFE_joint, StandState.RF_KFE_joint,
-                         StandState.LF_HAA_joint, StandState.LF_HFE_joint, StandState.LF_KFE_joint,
-                         StandState.RH_HAA_joint, StandState.RH_HFE_joint, StandState.RH_KFE_joint,
-                         StandState.LH_HAA_joint, StandState.LH_HFE_joint, StandState.LH_KFE_joint;
+    standJointAngles_ << StandState.LF_HAA_joint, StandState.LF_HFE_joint, StandState.LF_KFE_joint,
+                         StandState.RF_HAA_joint, StandState.RF_HFE_joint, StandState.RF_KFE_joint,
+                         StandState.LH_HAA_joint, StandState.LH_HFE_joint, StandState.LH_KFE_joint,
+                         StandState.RH_HAA_joint, StandState.RH_HFE_joint, StandState.RH_KFE_joint;
 
     auto *hybridJointInterface = robotHw->get<HybridJointInterface>();
     for (const auto &jointName : jointNames)
