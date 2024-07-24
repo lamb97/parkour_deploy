@@ -1,14 +1,17 @@
 <launch>
     <arg name="robot_type" default="$(env ROBOT_TYPE)" doc="Robot type: [a1, aliengo, go1, laikago]"/>
 
-    <param name="legged_robot_description" command="$(find xacro)/xacro $(find legged_unitree_description)/urdf/robot.xacro
-       robot_type:=$(arg robot_type)
-    "/>
+    <!-- Define a parameter using the result of running xacro -->
+    <param name="legged_robot_description" command="$(find xacro)/xacro $(find legged_unitree_description)/urdf/robot.xacro robot_type:=$(arg robot_type)"/>
+
+    <!-- Node to generate URDF from the xacro file -->
     <node name="generate_urdf" pkg="legged_common" type="generate_urdf.sh" output="screen"
           args="$(find legged_unitree_description)/urdf/robot.xacro $(arg robot_type)"/>
 
+    <!-- Load parameters from a YAML file -->
     <rosparam file="$(find legged_unitree_hw)/config/$(arg robot_type).yaml" command="load"/>
 
+    <!-- Pass the robot_type argument to the included launch file -->
     <param name="robot_type" value="$(arg robot_type)"/>
     <include file="$(find legged_unitree_hw)/launch/$(arg robot_type).launch"/>
 </launch>
