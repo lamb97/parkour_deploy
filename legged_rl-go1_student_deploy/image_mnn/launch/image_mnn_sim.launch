@@ -5,8 +5,8 @@
 
     <rosparam file="$(find rl_controllers)/config/$(env ROBOT_TYPE)/$(env ROBOT_TYPE)_kd.yaml" command="load"/>
     <rosparam file="$(find rl_controllers)/config/$(env ROBOT_TYPE)/$(env ROBOT_TYPE)_topic.yaml" command="load"/>
-    <param name="encoderModelPath" value="$(find rl_controllers)/policy/$(env ROBOT_TYPE)/encoder.mnn"/>
-    //<param name="policyModelPath" value="$(find rl_controllers)/policy/$(env ROBOT_TYPE)/actor.mnn"/>
+    <param name="encoderModelPath" value="$(find rl_controllers)/policy/$(env ROBOT_TYPE)/encoder_723.mnn"/>
+    //<param name="policyModelPath" value="$(find rl_controllers)/policy/$(env ROBOT_TYPE)/actor_723.mnn"/>
 
     <rosparam file="$(find rl_controllers)/config/controllers.yaml" command="load"/>
     <rosparam file="$(find rl_controllers)/config/$(env ROBOT_TYPE)/$(env ROBOT_TYPE)_parkour.yaml" command="load"/>

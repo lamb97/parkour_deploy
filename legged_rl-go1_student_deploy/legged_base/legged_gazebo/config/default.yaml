@@ -1,5 +1,5 @@
 gazebo:
-  delay: 0.02
+  delay: 0.05
   imus:
     base_imu:
       frame_id: base_imu

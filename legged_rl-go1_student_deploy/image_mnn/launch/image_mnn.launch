@@ -4,7 +4,7 @@
     <include file="$(find image_mnn)/launch/depth_image.launch"/>
 
     <rosparam file="$(find rl_controllers)/config/$(env ROBOT_TYPE)/$(env ROBOT_TYPE)_topic.yaml" command="load"/>
-    <param name="encoderModelPath" value="$(find rl_controllers)/policy/$(env ROBOT_TYPE)/encoder.mnn"/>
+    <param name="encoderModelPath" value="$(find rl_controllers)/policy/$(env ROBOT_TYPE)/encoder(7.22).mnn"/>
     
     <node name="image_mnn" pkg="image_mnn" type="image_mnn_node" output="screen"></node>
 </launch>

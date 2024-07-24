@@ -24,7 +24,7 @@ namespace legged
         ROS_INFO("parkour init");
         return true;
     }
-
+    //TODO:handleWalkMode 
     void ParkourController::handleWalkMode()
     {
         // compute observation & actions
@@ -37,7 +37,6 @@ namespace legged
             computeObservation();
             pubObs();
             computeActions();
-
             // limit action range
             scalar_t actionMin = -robotCfg_.clipActions;
             scalar_t actionMax = robotCfg_.clipActions;
@@ -46,7 +45,7 @@ namespace legged
                            { return std::max(actionMin, std::min(actionMax, x)); });
             // DEBUG_TIMER_DURATION(timer, "ParkourController handleWalkMode");
         }
-
+        //TODO:setAction
         // // set action
         for (int i = 0; i < hybridJointHandles_.size(); i++)
         {
@@ -55,11 +54,6 @@ namespace legged
             lastActions_[i] = actions_[i];
             // std::cout << "action:" << i << "::" << actions_[i] << std::endl;
         }
-        // ROS_WARN("1:%f",propri_.projectedGravity[0]);
-
-        // ROS_WARN("2:%f",propri_.projectedGravity[1]);
-        // ROS_WARN("3:%f",propri_.projectedGravity[2]);
-
     }
 
     bool ParkourController::loadRLCfg(ros::NodeHandle &nh)
@@ -69,21 +63,21 @@ namespace legged
         auto &obsScales = robotCfg_.obsScales;
 
         int error = 0;
-        error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/RF_HAA_joint", initState.RF_HAA_joint));
-        error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/RF_HFE_joint", initState.RF_HFE_joint));
-        error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/RF_KFE_joint", initState.RF_KFE_joint));
-
         error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/LF_HAA_joint", initState.LF_HAA_joint));
         error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/LF_HFE_joint", initState.LF_HFE_joint));
         error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/LF_KFE_joint", initState.LF_KFE_joint));
 
-        error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/RH_HAA_joint", initState.RH_HAA_joint));
-        error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/RH_HFE_joint", initState.RH_HFE_joint));
-        error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/RH_KFE_joint", initState.RH_KFE_joint));
+        error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/RF_HAA_joint", initState.RF_HAA_joint));
+        error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/RF_HFE_joint", initState.RF_HFE_joint));
+        error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/RF_KFE_joint", initState.RF_KFE_joint));
 
         error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/LH_HAA_joint", initState.LH_HAA_joint));
         error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/LH_HFE_joint", initState.LH_HFE_joint));
         error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/LH_KFE_joint", initState.LH_KFE_joint));
+
+        error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/RH_HAA_joint", initState.RH_HAA_joint));
+        error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/RH_HFE_joint", initState.RH_HFE_joint));
+        error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/init_state/default_joint_angle/RH_KFE_joint", initState.RH_KFE_joint));
 
         error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/control/stiffness", controlCfg.stiffness));
         error += static_cast<int>(!nh.getParam("/LeggedRobotCfg/control/damping", controlCfg.damping));
@@ -105,7 +99,7 @@ namespace legged
         // depth_actor
         privLatent_.resize(29);
         privLatent_ << 5.204, 0, 0, 0.24, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0;
-        proprioHistoryBuffer_.resize(450);
+        proprioHistoryBuffer_.resize(450);  //原530   53×10
         proprioHistoryBuffer_.setZero();
 
         num_priv_explicit_.resize(9);
@@ -131,7 +125,8 @@ namespace legged
             robotCfg_.initState.LF_HAA_joint, robotCfg_.initState.LF_HFE_joint, robotCfg_.initState.LF_KFE_joint,
             robotCfg_.initState.RF_HAA_joint, robotCfg_.initState.RF_HFE_joint, robotCfg_.initState.RF_KFE_joint,
             robotCfg_.initState.LH_HAA_joint, robotCfg_.initState.LH_HFE_joint, robotCfg_.initState.LH_KFE_joint,
-            robotCfg_.initState.RH_HAA_joint, robotCfg_.initState.RH_HFE_joint, robotCfg_.initState.RH_KFE_joint};
+            robotCfg_.initState.RH_HAA_joint, robotCfg_.initState.RH_HFE_joint, robotCfg_.initState.RH_KFE_joint,
+            };
         lastActions_.resize(actuatedDofNum_);
         lastActions_.setZero();
         defaultJointAngles_.resize(actuatedDofNum_);
@@ -164,15 +159,15 @@ namespace legged
         auto locked = depth_mutex_.try_lock();
         if (locked)
         {
-            // deltaYaw_ = depth_latent_[32];
-            // deltaNextYaw_ = depth_latent_[33];
-            deltaYaw_ = 0;
-            deltaNextYaw_ = 0;
+            deltaYaw_ = depth_latent_[32];
+            deltaNextYaw_ = depth_latent_[33];
+            // deltaYaw_ = 0;
+            // deltaNextYaw_ = 0;
 
             for (size_t i = 0; i < latentTensor->elementSize(); ++i)
             {
-                latentTensor->host<float>()[i] = depth_latent_[i];
-                // latentTensor->host<float>()[i] = 0;
+                // latentTensor->host<float>()[i] = depth_latent_[i];
+                latentTensor->host<float>()[i] = 0;
             }
             depth_mutex_.unlock();
         }
@@ -191,7 +186,7 @@ namespace legged
         mnn_tensor->copyFromHostTensor(tmp_tensor);
         delete tmp_tensor;
     }
-
+    //TODO:loadModel
     bool ParkourController::loadModel(ros::NodeHandle &nh)
     {
         std::string policyModelPath;
@@ -226,7 +221,7 @@ namespace legged
         }
 
         // Get input info
-        inputHistorybuf_ = interpreterPolicy_->getSessionInput(Policysession_, "obs_buf");
+        inputHistorybuf_ = interpreterPolicy_->getSessionInput(Policysession_, "obs_buf");    //from : /home/bridge/rl_parkour_ws/src/legged_rl/legged_rl-go1_student_deploy/rl_controllers/src/scripts/export_parkour.py
         input32latent_ = interpreterPolicy_->getSessionInput(Policysession_, "depth_latent");
 
         initMNNTensorWithZero(inputHistorybuf_);
@@ -235,7 +230,7 @@ namespace legged
         ROS_INFO_STREAM("actor model loaded successfully!");
         return true;
     }
-
+    //TODO:computeActions
     void ParkourController::computeActions()
     {
         interpreterPolicy_->runSession(Policysession_);
@@ -260,23 +255,15 @@ namespace legged
         vector_t actions(lastActions_);
 
         auto &obsScales = robotCfg_.obsScales;
-
+        //TODO:obs
         vector_t proprioObs(45);
-        proprioObs << propri_.baseAngVel * obsScales.angVel,             // 3
-            propri_.projectedGravity, 
-            // 0 ,
-            // 0 ,
-            // 0 ,                                  // 3                               
-            command[0] * 2.0 ,                                               // 3
-            command[1] * 2.0 ,                                               // 3
-            command[2] * 0.25 ,                                               // 3
-            (propri_.jointPos - defaultJointAngles_) * obsScales.dofPos, // 12
-            propri_.jointVel * obsScales.dofVel,                         // 12
-            actions;
-
-
-        
-
+        proprioObs << propri_.baseAngVel * obsScales.angVel,             // 3    
+            propri_.projectedGravity,                                  // 3 
+            command,                                                  // 3     
+            (propri_.jointPos - defaultJointAngles_) * obsScales.dofPos, // 12   
+            propri_.jointVel * obsScales.dofVel,                         // 12   
+            actions;                                                   //12    
+         
 
         // for (int i = 0; i < 53; i++)
         // {
@@ -290,7 +277,7 @@ namespace legged
         proprioObsHis[7] = 0;
 
         proprioHistoryBuffer_.head(proprioHistoryBuffer_.size() - 45) =
-        proprioHistoryBuffer_.tail(proprioHistoryBuffer_.size() - 45);
+            proprioHistoryBuffer_.tail(proprioHistoryBuffer_.size() - 45);
         proprioHistoryBuffer_.tail(45) = proprioObsHis.cast<double>();
 
         vector_t historyObservations_(665);
@@ -315,7 +302,7 @@ namespace legged
         control_msg::TimestampedFloat32MultiArray obs_msg;
         obs_msg.header.stamp = ros::Time::now();
         obs_msg.data.data.resize(45);
-        for (int j = 0; j <45; ++j)
+        for (int j = 0; j < 45; ++j)
         {
             obs_msg.data.data[j] = proprioHistoryBuffer_[405 + j];
         }

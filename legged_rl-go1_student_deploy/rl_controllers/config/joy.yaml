@@ -7,13 +7,13 @@ teleop:
     axis_mappings:
       - axis: 3
         target: angular.z
-        scale: 2.0
+        scale: 0.8
       - axis: 1
         target: linear.x
         scale: 2.0
       - axis: 0
         target: linear.y
-        scale: 2.0
+        scale: 1.0
 
   emergency_stop:
     type: topic
