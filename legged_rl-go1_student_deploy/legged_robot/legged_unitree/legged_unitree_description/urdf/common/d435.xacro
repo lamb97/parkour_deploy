@@ -7,7 +7,7 @@
         <!-- 深度相机关节 -->
         <joint name="camera_depth_joint" type="fixed">
             <!-- 相机连接的位置 -->
-            <origin xyz="0.27 0.015 0.086" rpy="0 0.0 0"/>
+            <origin xyz="0.27 0.015 0.086" rpy="0 1.2 0"/>
             <!-- 父链接 -->
             <parent link="${connected_to}"/>
             <!-- 子链接 -->
